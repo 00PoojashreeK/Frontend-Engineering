@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Social Media</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h2>Connect</h2>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Messages</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="profile">
+            <div class="profile-picture">PS</div>
+
+            <div>
+                <h2>Pooja Shree</h2>
+                <p>@poojashree</p>
+                <p>Computer Science Student</p>
+            </div>
+        </section>
+
+        <section class="create-post">
+            <input type="text" id="postInput" placeholder="What's on your mind?">
+            <button onclick="createPost()">Post</button>
+        </section>
+
+        <section class="post">
+
+            <div class="post-user">
+                <div class="small-picture">PS</div>
+
+                <div>
+                    <b>Pooja Shree</b>
+                    <p>@poojashree</p>
+                </div>
+            </div>
+
+            <p class="post-text">
+                Learning web development today!
+            </p>
+
+            <div class="post-image">
+                IMAGE
+            </div>
+
+            <div class="actions">
+                <button onclick="likePost(this)">Like</button>
+                <button onclick="focusComment(this)">Comment</button>
+                <button>Share</button>
+            </div>
+
+            <p class="likes">0 likes</p>
+
+            <div class="comment-box">
+                <input type="text" placeholder="Write a comment...">
+                <button>Send</button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
