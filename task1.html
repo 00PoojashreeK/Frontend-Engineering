@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1 | Product Showcase</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: #f3f7fc; color: #14243a;
+      min-height: 100vh; padding: 36px 18px;
+    }
+    .page { width: 100%; max-width: 1050px; margin: auto; }
+    .eyebrow { color: #087fbd; font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin: 8px 0; }
+    .intro { color: #607086; line-height: 1.65; max-width: 650px; margin-bottom: 26px; }
+    .product-card {
+      display: grid; grid-template-columns: 1fr; gap: 22px;
+      background: #fff; border: 1px solid #dce6f1; border-radius: 24px;
+      padding: 18px; box-shadow: 0 18px 45px rgba(31, 63, 99, .09);
+    }
+    .product-visual {
+      position: relative; min-height: 270px; overflow: hidden;
+      display: grid; place-items: center; border-radius: 17px;
+      background: radial-gradient(circle at 50% 45%, #d8efff, #b9d8ed 52%, #8fb7d2);
+    }
+    .mat {
+      width: 78%; height: 65%; border-radius: 18px;
+      background: linear-gradient(135deg, #24384c, #50677d 55%, #172b40);
+      box-shadow: 0 24px 35px rgba(12, 35, 57, .3);
+      transform: rotate(-7deg); position: relative;
+      transition: transform .3s ease;
+    }
+    .mat::before {
+      content: ""; position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,.24);
+      border-radius: 12px;
+    }
+    .mat::after {
+      content: "WORK IN FLOW"; position: absolute; right: 18px; bottom: 17px;
+      color: rgba(255,255,255,.72); font-size: .58rem; letter-spacing: .2em;
+    }
+    .product-visual:hover .mat { transform: rotate(-4deg) scale(1.04); }
+    .popular {
+      position: absolute; top: 16px; left: 16px; background: #087fbd;
+      color: white; border-radius: 30px; padding: 7px 13px;
+      font-size: .68rem; font-weight: 800; letter-spacing: .08em;
+    }
+    .details { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 4px 2px; }
+    .meta, .price-shelf { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .category { color: #607086; background: #f0f6fb; border: 1px solid #dbe6f0; padding: 6px 11px; border-radius: 8px; font-size: .78rem; }
+    .rating { color: #087fbd; font-size: .85rem; font-weight: 800; }
+    h2 { font-size: 1.45rem; margin: 16px 0 9px; }
+    .description { color: #66778c; line-height: 1.65; font-size: .94rem; }
+    .features-title { margin: 20px 0 10px; color: #607086; font-size: .76rem; font-weight: 800; letter-spacing: .12em; }
+    .features { display: flex; flex-wrap: wrap; gap: 9px; }
+    .feature { background: #e9f6ff; color: #176b99; border: 1px solid #c7e9fb; border-radius: 9px; padding: 8px 12px; font-size: .78rem; font-weight: 700; }
+    .price-shelf { border-top: 1px solid #e4ebf2; padding-top: 18px; align-items: end; }
+    .price { font-size: 1.45rem; font-weight: 850; }
+    .tax { color: #8290a1; font-size: .8rem; margin-top: 3px; }
+    .button { border: 0; background: #0787c8; color: white; border-radius: 10px; padding: 13px 22px; font-weight: 800; cursor: pointer; transition: background .2s, transform .2s; }
+    .button:hover { background: #066fa7; }
+    .button:active { transform: scale(.96); }
+    .note { margin-top: 17px; color: #75869a; font-size: .8rem; }
+    @media (min-width: 768px) {
+      body { padding: 55px 28px; }
+      .product-card { grid-template-columns: 1fr 1fr; gap: 28px; padding: 22px; }
+      .product-visual { min-height: 430px; }
+      .details { padding: 7px 3px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">01 / Product spotlight</p>
+    <h1>Designed for a better workday.</h1>
+    <p class="intro">A responsive product showcase with a clean product visual, useful feature tags and a clear shopping action. The layout stacks on mobile and becomes a two-column grid on desktop.</p>
+
+    <article class="product-card">
+      <div class="product-visual" aria-label="Illustration of a dark desk workspace mat">
+        <span class="popular">BESTSELLER</span>
+        <div class="mat"></div>
+      </div>
+
+      <section class="details">
+        <div>
+          <div class="meta">
+            <span class="category">Workspace essentials</span>
+            <span class="rating">★ 4.9 <span style="color:#8290a1;font-weight:500;">(128 reviews)</span></span>
+          </div>
+          <h2>Desk Workspace Mat</h2>
+          <p class="description">Give your desk a calm, organised look. This smooth, water-resistant mat creates a comfortable space for your laptop, keyboard and everyday ideas.</p>
+          <p class="features-title">MADE FOR YOUR SETUP</p>
+          <div class="features">
+            <span class="feature">Water-resistant</span>
+            <span class="feature">Easy to clean</span>
+            <span class="feature">Non-slip base</span>
+            <span class="feature">Minimal design</span>
+          </div>
+        </div>
+        <div class="price-shelf">
+          <div>
+            <p class="price">₹1,499</p>
+            <p class="tax">Inclusive of all taxes</p>
+          </div>
+          <button class="button" type="button" onclick="this.textContent='Added ✓'">Add to Bag</button>
+        </div>
+      </section>
+    </article>
+    <p class="note">Responsive breakpoint: 768px · Grid for the main split · Flexbox for product details and feature tags.</p>
+  </main>
+</body>
+</html>

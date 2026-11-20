@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4 | Creator Profile</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; min-height: 100vh; padding: 36px 18px; background: #f4f6fb; color: #18243a; }
+    .page { max-width: 950px; margin: auto; }
+    .eyebrow { color: #7554c8; font-size: .75rem; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 9px 0; }
+    .intro { color: #68768c; line-height: 1.65; max-width: 650px; margin-bottom: 25px; }
+    .profile-card { background: white; border: 1px solid #e1e6f0; border-radius: 24px; padding: 23px; box-shadow: 0 18px 45px rgba(35,48,78,.08); }
+    .profile-header { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 19px; }
+    .avatar { width: 116px; height: 116px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; color: white; font-size: 2.2rem; font-weight: 900; letter-spacing: -.08em; background: radial-gradient(circle at 30% 25%, #f9c7a8, #a46bd4 45%, #4c4f9c 85%); border: 5px solid #f0eaff; box-shadow: 0 8px 22px rgba(117,84,200,.2); transition: transform .25s ease; }
+    .avatar:hover { transform: scale(1.05); }
+    .username { font-size: 1.3rem; font-weight: 900; }
+    .role { color: #7554c8; font-size: .9rem; font-weight: 750; margin-top: 4px; }
+    .bio { color: #68768c; line-height: 1.6; font-size: .9rem; margin-top: 10px; max-width: 540px; }
+    .website { display: inline-block; color: #7554c8; text-decoration: none; font-size: .88rem; font-weight: 750; margin-top: 9px; }
+    .actions { display: flex; gap: 10px; width: 100%; margin-top: 17px; }
+    .action-btn { flex: 1; border: 1px solid #7554c8; border-radius: 10px; padding: 12px 15px; background: #7554c8; color: white; font-weight: 850; cursor: pointer; transition: transform .2s, background .2s; }
+    .action-btn.secondary { color: #7554c8; background: white; }
+    .action-btn:hover { background: #6241b4; color: white; }
+    .action-btn:active { transform: scale(.96); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 25px 0; padding: 18px 5px; border-top: 1px solid #edf0f5; border-bottom: 1px solid #edf0f5; text-align: center; }
+    .stat strong { display: block; font-size: 1.35rem; font-weight: 900; }
+    .stat span { color: #7b8799; font-size: .78rem; margin-top: 4px; display: block; }
+    .highlights-title { font-size: .82rem; font-weight: 900; letter-spacing: .1em; color: #65738a; margin-bottom: 14px; }
+    .highlights { display: flex; gap: 17px; overflow-x: auto; padding: 2px 2px 12px; }
+    .highlight { flex-shrink: 0; width: 76px; text-align: center; color: #526078; font-size: .76rem; font-weight: 700; }
+    .highlight-circle { width: 66px; height: 66px; margin: 0 auto 8px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(145deg, #eee7ff, #d7ccff); border: 2px solid white; outline: 2px solid #c8b8f4; color: #6547b3; font-size: 1.35rem; }
+    .note { color: #8490a2; font-size: .8rem; margin-top: 15px; }
+    @media (min-width: 768px) {
+      body { padding: 55px 28px; }
+      .profile-card { padding: 32px; }
+      .profile-header { flex-direction: row; align-items: center; text-align: left; gap: 28px; }
+      .avatar { width: 145px; height: 145px; font-size: 2.8rem; }
+      .profile-main { flex: 1; }
+      .actions { max-width: 300px; }
+      .stats { max-width: 480px; margin: 25px 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">04 / Meet the creator</p>
+    <h1>A profile that tells your story.</h1>
+    <p class="intro">A social profile header that keeps the important details easy to scan. On mobile, the content is centred; on desktop, the avatar and profile information sit side by side.</p>
+
+    <article class="profile-card">
+      <header class="profile-header">
+        <div class="avatar" aria-label="Alex Rivera profile avatar">AR</div>
+        <div class="profile-main">
+          <p class="username">alex_designer</p>
+          <p class="role">Alex Rivera · UI Engineer</p>
+          <p class="bio">Building thoughtful design systems, accessible interfaces and open-source widgets. Sharing small ideas that make digital experiences better.</p>
+          <a class="website" href="https://example.com" target="_blank" rel="noopener">portfolio-alex.dev ↗</a>
+          <div class="actions">
+            <button class="action-btn" type="button" onclick="this.textContent=this.textContent==='Follow'?'Following ✓':'Follow'">Follow</button>
+            <button class="action-btn secondary" type="button" onclick="this.textContent='Message ready'">Message</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="stats" aria-label="Creator statistics">
+        <div class="stat"><strong>148</strong><span>Posts</span></div>
+        <div class="stat"><strong>12.4k</strong><span>Followers</span></div>
+        <div class="stat"><strong>420</strong><span>Following</span></div>
+      </section>
+
+      <section>
+        <h2 class="highlights-title">STORY HIGHLIGHTS</h2>
+        <div class="highlights">
+          <div class="highlight"><div class="highlight-circle">✦</div>Design</div>
+          <div class="highlight"><div class="highlight-circle">▣</div>Projects</div>
+          <div class="highlight"><div class="highlight-circle">⌘</div>Work</div>
+          <div class="highlight"><div class="highlight-circle">✎</div>Tips</div>
+          <div class="highlight"><div class="highlight-circle">♡</div>Life</div>
+        </div>
+      </section>
+    </article>
+    <p class="note">Flexbox aligns the profile header and action buttons · CSS Grid creates the three statistics · Highlights scroll horizontally on narrow screens.</p>
+  </main>
+</body>
+</html>

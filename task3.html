@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3 | Music Player</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; min-height: 100vh; padding: 36px 18px; background: #0b1020; color: #f5f7ff; }
+    .page { max-width: 1000px; margin: auto; }
+    .eyebrow { color: #b99cff; font-size: .75rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 9px 0; }
+    .intro { color: #9ba6c0; line-height: 1.65; max-width: 650px; margin-bottom: 25px; }
+    .player { display: grid; grid-template-columns: 1fr; gap: 25px; padding: 20px; border: 1px solid #2b3450; border-radius: 24px; background: linear-gradient(145deg, #171d34, #101628); box-shadow: 0 22px 50px rgba(0,0,0,.3); }
+    .album-art { min-height: 260px; display: grid; place-items: center; border-radius: 18px; overflow: hidden; position: relative; background: radial-gradient(circle at 50% 50%, #7b5bba, #332c72 42%, #171d3d 75%); }
+    .orb { width: 175px; height: 175px; border-radius: 50%; display: grid; place-items: center; background: repeating-radial-gradient(circle, #171b2d 0 7px, #2e3657 8px 10px); box-shadow: 0 12px 40px rgba(0,0,0,.45); animation: spin 12s linear infinite; }
+    .orb::after { content: ""; width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #d9b8ff, #7b5bba); border: 7px solid #252a43; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .album-label { position: absolute; left: 17px; bottom: 16px; color: #e9dcff; font-size: .7rem; font-weight: 800; letter-spacing: .17em; }
+    .now-playing { padding: 3px 2px; }
+    .small-label { color: #b99cff; font-size: .7rem; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
+    h2 { font-size: 1.55rem; margin: 8px 0 4px; }
+    .artist { color: #9ba6c0; font-size: .9rem; }
+    .progress-area { margin: 23px 0 8px; }
+    .progress { height: 5px; background: #343c58; border-radius: 20px; overflow: hidden; }
+    .progress span { display: block; height: 100%; width: 42%; border-radius: inherit; background: linear-gradient(90deg, #a78bfa, #5ee7d4); }
+    .time { display: flex; justify-content: space-between; color: #77839f; font-size: .72rem; margin-top: 7px; }
+    .controls { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+    .control { width: 42px; height: 42px; border: 1px solid #414b69; border-radius: 50%; background: #222b45; color: #f5f7ff; font-size: 1rem; cursor: pointer; }
+    .control.main { width: 52px; height: 52px; background: #a78bfa; color: #17132b; border-color: #a78bfa; font-weight: 900; }
+    .queue { border-top: 1px solid #2b3450; padding-top: 22px; }
+    .queue-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 13px; }
+    .queue-heading h3 { font-size: 1.05rem; }
+    .queue-heading span { color: #8995b0; font-size: .78rem; }
+    .track { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; padding: 14px 12px; border-radius: 12px; color: #cbd3e7; transition: transform .22s ease, background .22s ease; }
+    .track:hover { transform: translateX(6px); background: #222b45; }
+    .track.active { background: #292846; color: #d8c9ff; }
+    .track-info { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .track-number { color: #8995b0; font-size: .75rem; }
+    .track-title { font-size: .9rem; font-weight: 700; }
+    .track-artist { color: #8995b0; font-size: .75rem; margin-top: 3px; }
+    .duration { color: #8995b0; font-size: .8rem; flex-shrink: 0; }
+    .note { color: #77839f; font-size: .8rem; margin-top: 17px; }
+    @media (min-width: 768px) {
+      body { padding: 55px 28px; }
+      .player { grid-template-columns: 200px 1fr; gap: 30px; padding: 26px; }
+      .album-art { min-height: 310px; }
+      .queue { grid-column: 2; border-top: 0; border-left: 1px solid #2b3450; padding: 0 0 0 25px; }
+      .now-playing { grid-column: 1; grid-row: 1; }
+      .album-art { grid-column: 1; grid-row: 1; margin-top: 0; }
+      .queue { grid-row: 1; }
+      .album-art { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">03 / Your listening space</p>
+    <h1>Press play. Find your flow.</h1>
+    <p class="intro">A dark-mode music widget with a rotating vinyl-style album visual and a neatly aligned Up Next queue. The queue becomes a full-width stack on smaller screens.</p>
+
+    <section class="player">
+      <div class="album-art" aria-label="Decorative purple vinyl record artwork">
+        <div class="orb"></div>
+        <span class="album-label">AFTER HOURS / SIDE A</span>
+      </div>
+      <section class="now-playing">
+        <p class="small-label">Now playing</p>
+        <h2>Midnight Echoes</h2>
+        <p class="artist">Cyber Wave · 2026</p>
+        <div class="progress-area">
+          <div class="progress"><span></span></div>
+          <div class="time"><span>1:34</span><span>3:42</span></div>
+        </div>
+        <div class="controls">
+          <button class="control" aria-label="Previous track" type="button">◀</button>
+          <button class="control main" id="playBtn" aria-label="Play or pause" type="button" onclick="togglePlay()">▶</button>
+          <button class="control" aria-label="Next track" type="button">▶|</button>
+        </div>
+      </section>
+      <section class="queue">
+        <div class="queue-heading"><h3>Up Next</h3><span>04 tracks</span></div>
+        <div class="track active"><div class="track-info"><span class="track-number">01</span><div><p class="track-title">Neon Route</p><p class="track-artist">Cyber Wave</p></div></div><span class="duration">3:42</span></div>
+        <div class="track"><div class="track-info"><span class="track-number">02</span><div><p class="track-title">Silicon Drift</p><p class="track-artist">The Data Kids</p></div></div><span class="duration">4:15</span></div>
+        <div class="track"><div class="track-info"><span class="track-number">03</span><div><p class="track-title">Digital Rain</p><p class="track-artist">Nova Signals</p></div></div><span class="duration">2:58</span></div>
+        <div class="track"><div class="track-info"><span class="track-number">04</span><div><p class="track-title">Night Ride</p><p class="track-artist">Lunar Avenue</p></div></div><span class="duration">3:10</span></div>
+      </section>
+    </section>
+    <p class="note">Layout: 1-column mobile stack · 200px + flexible desktop grid · Flexbox track rows · CSS keyframe vinyl animation. This is a UI demo and does not play audio.</p>
+  </main>
+  <script>
+    function togglePlay() {
+      const button = document.getElementById("playBtn");
+      button.textContent = button.textContent === "▶" ? "Ⅱ" : "▶";
+    }
+  </script>
+</body>
+</html>
