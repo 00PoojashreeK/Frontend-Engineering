@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2 | Pricing Plans</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: #080d19; color: #f4f7ff; min-height: 100vh; padding: 38px 18px;
+    }
+    .page { max-width: 1080px; margin: auto; }
+    .eyebrow { color: #69d7ff; font-size: .75rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); margin: 9px 0; }
+    .intro { color: #9aa9c3; max-width: 650px; line-height: 1.65; margin-bottom: 25px; }
+    .billing-wrap { display: flex; justify-content: center; margin: 20px 0 30px; }
+    .billing-toggle { display: inline-flex; align-items: center; gap: 4px; padding: 5px; border-radius: 40px; background: #18243a; border: 1px solid #2d3d59; }
+    .billing-toggle button { border: 0; color: #a9b8d0; background: transparent; border-radius: 30px; padding: 10px 22px; font-weight: 800; cursor: pointer; }
+    .billing-toggle button.active { background: #68d9ff; color: #081321; box-shadow: 0 4px 15px rgba(104,217,255,.2); }
+    .plans { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .plan {
+      position: relative; display: flex; flex-direction: column; justify-content: space-between;
+      gap: 24px; padding: 25px; min-height: 330px; border-radius: 20px;
+      background: linear-gradient(150deg, #151f33, #101827); border: 1px solid #2b3b57;
+      box-shadow: 0 16px 35px rgba(0,0,0,.2); transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .plan:hover { transform: translateY(-6px); box-shadow: 0 22px 42px rgba(0,0,0,.32); }
+    .plan.featured { border: 2px solid #42cfff; background: linear-gradient(145deg, #172c43, #101b2e); animation: borderPulse 3s ease-in-out infinite; }
+    @keyframes borderPulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(66,207,255,0), 0 18px 38px rgba(0,0,0,.2); }
+      50% { box-shadow: 0 0 22px rgba(66,207,255,.22), 0 18px 38px rgba(0,0,0,.25); }
+    }
+    .popular { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: #42cfff; color: #071321; padding: 6px 17px; border-radius: 30px; font-size: .68rem; font-weight: 900; letter-spacing: .08em; white-space: nowrap; }
+    .plan-name { color: #c3d0e4; font-weight: 750; font-size: 1rem; }
+    .price { font-size: 2.25rem; font-weight: 900; letter-spacing: -.04em; margin-top: 9px; }
+    .price small { font-size: .85rem; color: #9aabc5; letter-spacing: 0; }
+    .plan-description { color: #93a4be; line-height: 1.6; font-size: .88rem; margin-top: 12px; }
+    .features { list-style: none; display: grid; gap: 12px; color: #c3cee0; font-size: .9rem; }
+    .features li::before { content: "✓"; color: #68d9ff; font-weight: 900; margin-right: 9px; }
+    .select-btn { width: 100%; border: 1px solid #3c506f; border-radius: 11px; padding: 13px; background: #1d2b42; color: #eaf3ff; font-weight: 850; cursor: pointer; transition: transform .2s, background .2s; }
+    .featured .select-btn { background: #42cfff; color: #071321; border-color: #42cfff; }
+    .select-btn:hover { background: #2b405e; }
+    .featured .select-btn:hover { background: #80e3ff; }
+    .select-btn:active { transform: scale(.97); }
+    .footnote { text-align: center; color: #72839f; font-size: .8rem; margin-top: 22px; }
+    @media (min-width: 850px) {
+      body { padding: 55px 28px; }
+      .plans { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: stretch; }
+      .plan { min-height: 390px; padding: 28px; }
+      .billing-wrap { margin-top: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">02 / Choose your experience</p>
+    <h1>Simple plans. Bigger possibilities.</h1>
+    <p class="intro">Pick a plan that fits the way you work. The Pro plan is highlighted as the recommended choice. Switch between monthly and annual billing to see the updated prices.</p>
+
+    <div class="billing-wrap">
+      <div class="billing-toggle" role="group" aria-label="Billing period">
+        <button class="active" id="monthlyBtn" type="button" onclick="setBilling('monthly')">Monthly</button>
+        <button id="annualBtn" type="button" onclick="setBilling('annual')">Annual <span style="font-size:.68rem;">−20%</span></button>
+      </div>
+    </div>
+
+    <section class="plans" aria-label="Pricing plans">
+      <article class="plan">
+        <div>
+          <p class="plan-name">Starter</p>
+          <p class="price">Free</p>
+          <p class="plan-description">For individuals who are getting started and exploring the essentials.</p>
+        </div>
+        <ul class="features">
+          <li>1 personal workspace</li><li>Basic templates</li><li>Community support</li>
+        </ul>
+        <button class="select-btn" type="button" onclick="this.textContent='Selected ✓'">Choose Starter</button>
+      </article>
+
+      <article class="plan featured">
+        <span class="popular">MOST POPULAR</span>
+        <div>
+          <p class="plan-name">Pro Plan</p>
+          <p class="price"><span class="amount" data-month="799" data-year="639">₹799</span><small>/mo</small></p>
+          <p class="plan-description">For creators and professionals who want more control and productivity.</p>
+        </div>
+        <ul class="features">
+          <li>Unlimited projects</li><li>Advanced analytics</li><li>Priority support</li><li>Premium templates</li>
+        </ul>
+        <button class="select-btn" type="button" onclick="this.textContent='Pro selected ✓'">Select Pro</button>
+      </article>
+
+      <article class="plan">
+        <div>
+          <p class="plan-name">Team</p>
+          <p class="price"><span class="amount" data-month="1999" data-year="1599">₹1,999</span><small>/mo</small></p>
+          <p class="plan-description">For teams that collaborate, share work and move projects forward together.</p>
+        </div>
+        <ul class="features">
+          <li>Everything in Pro</li><li>Up to 10 members</li><li>Shared team workspace</li><li>Team reports</li>
+        </ul>
+        <button class="select-btn" type="button" onclick="this.textContent='Team selected ✓'">Choose Team</button>
+      </article>
+    </section>
+    <p class="footnote">Annual prices show the discounted monthly equivalent, billed yearly.</p>
+  </main>
+  <script>
+    function setBilling(period) {
+      document.getElementById("monthlyBtn").classList.toggle("active", period === "monthly");
+      document.getElementById("annualBtn").classList.toggle("active", period === "annual");
+      document.querySelectorAll(".amount").forEach(function(price) {
+        const value = period === "monthly" ? price.dataset.month : price.dataset.year;
+        price.textContent = "₹" + Number(value).toLocaleString("en-IN");
+      });
+    }
+  </script>
+</body>
+</html>
