@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Quiet Corner</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Courier New", monospace;
+            background: #faf9f6;
+            color: #111;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            border-right: 1px solid black;
+            padding: 35px 22px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            text-align: center;
+        }
+
+        .logo h2 {
+            font-size: 21px;
+            margin-top: 15px;
+        }
+
+        .logo p {
+            font-size: 11px;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            margin-top: 60px;
+        }
+
+        .navigation a {
+            display: block;
+            padding: 14px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: black;
+            transition: 0.3s;
+        }
+
+        .navigation a:hover {
+            background: #e5e5e5;
+            transform: translateX(5px);
+        }
+
+        .side-quote {
+            margin-top: auto;
+            text-align: center;
+            padding: 30px 5px;
+            font-family: cursive;
+            font-size: 21px;
+            line-height: 1.7;
+        }
+
+        /* MAIN CONTENT */
+
+        main {
+            padding: 30px 45px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .topbar input {
+            border: none;
+            border-bottom: 1px solid black;
+            background: transparent;
+            padding: 8px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .topbar button {
+            border: none;
+            background: transparent;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 30px;
+            padding: 65px 0 45px;
+        }
+
+        .hero small {
+            letter-spacing: 4px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 65px);
+            line-height: 1.15;
+            margin: 20px 0;
+        }
+
+        .hero p {
+            font-size: 14px;
+            line-height: 2;
+            max-width: 420px;
+        }
+
+        .explore {
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 15px 30px;
+            margin-top: 25px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .explore:hover {
+            background: white;
+            color: black;
+            outline: 1px solid black;
+        }
+
+        .mountain {
+            width: 100%;
+        }
+
+        /* FEATURED SECTION */
+
+        .section-title {
+            margin: 25px 0;
+            font-size: 24px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 8px 15px #00000020;
+        }
+
+        .card img {
+            width: 100%;
+            height: 145px;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .card-info {
+            padding: 15px;
+        }
+
+        .card-info h3 {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .card-info p {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .card-info a {
+            display: inline-block;
+            margin-top: 15px;
+            color: black;
+            text-decoration: none;
+            font-size: 22px;
+        }
+
+        /* QUOTE NOTE */
+
+        .note {
+            background: #eeece7;
+            padding: 35px 25px;
+            margin: 15px 5px 50px;
+            transform: rotate(-3deg);
+            box-shadow: 4px 8px 15px #00000020;
+            border: 1px solid #ccc;
+        }
+
+        .note p {
+            font-family: cursive;
+            font-size: 22px;
+            line-height: 1.8;
+        }
+
+        .note span {
+            display: block;
+            text-align: right;
+            margin-top: 15px;
+            font-size: 22px;
+        }
+
+        /* LATEST THOUGHTS */
+
+        .latest h2 {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        .thought {
+            display: grid;
+            grid-template-columns: 75px 1fr;
+            gap: 12px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .thought img {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            border-radius: 5px;
+        }
+
+        .thought h4 {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .thought p {
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .thought small {
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #aaa;
+            margin-top: 40px;
+            padding-top: 20px;
+            font-size: 11px;
+        }
+
+        /* DARK MODE */
+
+        body.dark {
+            background: #171717;
+            color: white;
+        }
+
+        body.dark .sidebar {
+            border-color: white;
+        }
+
+        body.dark .navigation a {
+            color: white;
+        }
+
+        body.dark .navigation a:hover {
+            background: #333;
+        }
+
+        body.dark .topbar input {
+            color: white;
+            border-color: white;
+        }
+
+        body.dark .topbar button {
+            color: white;
+        }
+
+        body.dark .explore {
+            background: white;
+            color: black;
+        }
+
+        body.dark .card {
+            border-color: #777;
+        }
+
+        body.dark .card-info a {
+            color: white;
+        }
+
+        body.dark .note {
+            background: #292929;
+            border-color: #555;
+        }
+
+        body.dark footer {
+            border-color: #777;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media(max-width: 1000px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid black;
+                padding: 20px;
+            }
+
+            .navigation {
+                margin-top: 20px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .navigation a {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .side-quote {
+                display: none;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                display: grid;
+                grid-template-columns: 40% 1fr;
+            }
+
+            .card img {
+                height: 100%;
+                min-height: 150px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>⌁</h2>
+            <h2>The Quiet Corner</h2>
+            <p>Small thoughts. Big dreams.</p>
+        </div>
+
+        <nav class="navigation">
+            <a href="#home">⌂ &nbsp; Home</a>
+            <a href="#journal">▤ &nbsp; Journal</a>
+            <a href="#gallery">▧ &nbsp; Gallery</a>
+            <a href="#about">♙ &nbsp; About</a>
+            <a href="#contact">✉ &nbsp; Contact</a>
+        </nav>
+
+        <div class="side-quote">
+            “Better things<br>
+            take time.”
+            <br>________
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+
+    <main>
+
+        <div class="topbar">
+            <input type="text" id="search"
+                   placeholder="Search thoughts...">
+
+            <button onclick="toggleTheme()">☼</button>
+        </div>
+
+        <!-- HERO SECTION -->
+
+        <section class="hero" id="home">
+
+            <div>
+                <small>H E L L O,</small>
+
+                <h1>
+                    Welcome to<br>
+                    my little space...
+                </h1>
+
+                <p>
+                    A place where I share my thoughts,
+                    ideas, and little moments that
+                    make life feel special.
+                </p>
+
+                <a href="#journal" class="explore">
+                    Explore &nbsp; →
+                </a>
+            </div>
+
+            <!-- MOUNTAIN DRAWING -->
+
+            <svg class="mountain"
+                 viewBox="0 0 500 300"
+                 xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 stroke="black"
+                 stroke-width="2">
+
+                <circle cx="300" cy="65" r="40"/>
+
+                <path d="M30 200 L130 110 L190 155
+                         L250 100 L350 200"/>
+
+                <path d="M130 110 L150 145 L170 130"/>
+                <path d="M250 100 L225 140 L250 130 L275 155"/>
+
+                <path d="M30 205 H350"/>
+                <path d="M60 215 H320"/>
+                <path d="M100 225 H280"/>
+                <path d="M140 235 H250"/>
+
+                <path d="M370 200 V110
+                         M370 125 L355 145 L370 138 L385 145
+                         M370 155 L355 175 L370 168 L385 175"/>
+
+                <path d="M410 200 V80
+                         M410 95 L395 115 L410 108 L425 115
+                         M410 130 L395 150 L410 143 L425 150"/>
+
+                <path d="M440 65 Q450 55 460 65
+                         M460 85 Q470 75 480 85
+                         M420 45 Q430 35 440 45"/>
+
+            </svg>
+
+        </section>
+
+        <!-- FEATURED CARDS -->
+
+        <div class="content">
+
+            <section id="journal">
+
+                <h2 class="section-title">
+                    Featured
+                </h2>
+
+                <div class="cards">
+
+                    <div class="card">
+                        <img
+                        src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600"
+                        alt="Notebook and pen">
+
+                        <div class="card-info">
+                            <h3>My Journal</h3>
+                            <p>
+                                Random thoughts, ideas,
+                                lessons and more...
+                            </p>
+                            <a href="#latest">→</a>
+                        </div>
+                    </div>
+
+                    <div class="card" id="gallery">
+                        <img
+                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600"
+                        alt="Mountain landscape">
+
+                        <div class="card-info">
+                            <h3>Gallery</h3>
+                            <p>
+                                A collection of moments,
+                                places and people...
+                            </p>
+                            <a href="#gallery">→</a>
+                        </div>
+                    </div>
+
+                    <div class="card" id="about">
+                        <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600"
+                        alt="Workspace">
+
+                        <div class="card-info">
+                            <h3>About Me</h3>
+                            <p>
+                                A little bit about my
+                                story and what inspires me...
+                            </p>
+                            <a href="#contact">→</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- RIGHT SIDE CONTENT -->
+
+            <aside>
+
+                <div class="note">
+                    <p>
+                        “A little progress each day
+                        adds up to big results.”
+                    </p>
+                    <span>♡</span>
+                </div>
+
+                <section class="latest" id="latest">
+
+                    <h2>Latest Thoughts</h2>
+
+                    <div class="thought">
+                        <img
+                        src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=200"
+                        alt="Ocean">
+
+                        <div>
+                            <h4>The Power of Small Habits</h4>
+                            <p>
+                                Little changes can make
+                                a big difference...
+                            </p>
+                            <small>Oct 10, 2026</small>
+                        </div>
+                    </div>
+
+                    <div class="thought">
+                        <img
+                        src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=200"
+                        alt="Plant">
+
+                        <div>
+                            <h4>Finding Joy in the Little Things</h4>
+                            <p>
+                                It's often the small moments
+                                that matter most...
+                            </p>
+                            <small>Oct 5, 2026</small>
+                        </div>
+                    </div>
+
+                    <div class="thought">
+                        <img
+                        src="https://images.unsplash.com/photo-1519684732481-4c7b4c4b4c4b?w=200"
+                        alt="Nature">
+
+                        <div>
+                            <h4>Lessons from My Journey</h4>
+                            <p>
+                                Not all who wander
+                                are lost...
+                            </p>
+                            <small>Sep 28, 2026</small>
+                        </div>
+                    </div>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+        <!-- FOOTER -->
+
+        <footer id="contact">
+            <p>THE QUIET CORNER — A SPACE TO SLOW DOWN</p>
+            <p>© 2026</p>
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    // Dark mode toggle
+
+    function toggleTheme() {
+        document.body.classList.toggle("dark");
+    }
+
+    // Search functionality
+
+    const search = document.getElementById("search");
+
+    search.addEventListener("input", function() {
+
+        let value = search.value.toLowerCase();
+
+        let cards = document.querySelectorAll(".card");
+        let thoughts = document.querySelectorAll(".thought");
+
+        cards.forEach(function(card) {
+
+            let text = card.innerText.toLowerCase();
+
+            card.style.display =
+                text.includes(value) ? "" : "none";
+
+        });
+
+        thoughts.forEach(function(thought) {
+
+            let text = thought.innerText.toLowerCase();
+
+            thought.style.display =
+                text.includes(value) ? "grid" : "none";
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

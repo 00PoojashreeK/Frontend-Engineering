@@ -1,0 +1,283 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ConnectSphere - Social Media</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid black;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            border-bottom: 1px solid black;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .stories {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            border: 1px solid black;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .story {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .post {
+            border: 1px solid black;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .post h3 {
+            margin-top: 0;
+        }
+
+        .post-image {
+            border: 1px solid black;
+            text-align: center;
+            padding: 45px;
+            margin: 15px 0;
+        }
+
+        button {
+            padding: 8px 15px;
+            border: 1px solid black;
+            background: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            text-decoration: underline;
+        }
+
+        .create-post {
+            border: 1px solid black;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 70px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid black;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>ConnectSphere</h1>
+        <p>Share Moments. Discover People. Build Connections.</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#stories">Stories</a>
+        <a href="#explore">Explore</a>
+        <a href="#profile">Profile</a>
+    </nav>
+
+    <div class="container">
+
+        <section class="welcome" id="home">
+            <h2>Welcome to Your Social Space!</h2>
+            <p>A place where ideas, creativity and friendships come together.</p>
+        </section>
+
+        <section id="stories">
+            <h3>Today's Stories</h3>
+
+            <div class="stories">
+                <div class="story">
+                    <h2>+</h2>
+                    <p>Your Story</p>
+                </div>
+
+                <div class="story">
+                    <h2>👤</h2>
+                    <p>Arjun</p>
+                </div>
+
+                <div class="story">
+                    <h2>👤</h2>
+                    <p>Meera</p>
+                </div>
+
+                <div class="story">
+                    <h2>👤</h2>
+                    <p>Rahul</p>
+                </div>
+
+                <div class="story">
+                    <h2>👤</h2>
+                    <p>Ananya</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="create-post">
+            <h3>What's on your mind?</h3>
+
+            <textarea id="postText" placeholder="Share something with the world..."></textarea>
+
+            <button onclick="addPost()">Publish Post</button>
+        </section>
+
+        <section id="explore">
+            <h2>Explore Community</h2>
+
+            <div id="postContainer">
+
+                <div class="post">
+                    <h3>👤 Arjun Kumar</h3>
+                    <p>Every day is a new opportunity to learn something amazing!</p>
+
+                    <div class="post-image">
+                        <h2>📷</h2>
+                        <p>A beautiful day, a beautiful life.</p>
+                    </div>
+
+                    <button onclick="likePost(this)">♡ Like</button>
+                    <button onclick="commentPost()">Comment</button>
+                    <p>Likes: <span>12</span></p>
+                </div>
+
+                <div class="post">
+                    <h3>👤 Meera Sharma</h3>
+                    <p>Creativity begins when you start thinking differently.</p>
+
+                    <div class="post-image">
+                        <h2>💡</h2>
+                        <p>Think. Create. Inspire.</p>
+                    </div>
+
+                    <button onclick="likePost(this)">♡ Like</button>
+                    <button onclick="commentPost()">Comment</button>
+                    <p>Likes: <span>25</span></p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="profile">
+            <h2>My Profile</h2>
+            <p>Name: ConnectSphere Member</p>
+            <p>Posts: 2</p>
+            <p>Followers: 120</p>
+            <p>Following: 85</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 ConnectSphere | Connect. Share. Inspire.</p>
+        <p>Made for people who love connecting.</p>
+    </footer>
+
+    <script>
+
+        function likePost(button) {
+            let likes = button.parentElement.querySelector("span");
+
+            if (button.innerHTML.includes("♡")) {
+                likes.innerHTML = Number(likes.innerHTML) + 1;
+                button.innerHTML = "♥ Liked";
+            } else {
+                likes.innerHTML = Number(likes.innerHTML) - 1;
+                button.innerHTML = "♡ Like";
+            }
+        }
+
+        function commentPost() {
+            let comment = prompt("Write your comment:");
+
+            if (comment) {
+                alert("Your comment: " + comment);
+            }
+        }
+
+        function addPost() {
+            let text = document.getElementById("postText").value;
+
+            if (text.trim() === "") {
+                alert("Please write something before publishing!");
+                return;
+            }
+
+            let post = document.createElement("div");
+
+            post.className = "post";
+
+            post.innerHTML = `
+                <h3>👤 ConnectSphere Member</h3>
+                <p>${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+                <button onclick="likePost(this)">♡ Like</button>
+                <button onclick="commentPost()">Comment</button>
+                <p>Likes: <span>0</span></p>
+            `;
+
+            document.getElementById("postContainer").prepend(post);
+
+            document.getElementById("postText").value = "";
+        }
+
+    </script>
+
+</body>
+</html>

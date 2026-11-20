@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OFFLINE. - Social Space</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f7f7f7;
+    color: #111;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 220px 1fr 260px;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    padding: 30px 20px;
+    border-right: 1px solid #ccc;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.logo span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 8px;
+}
+
+.nav {
+    margin-top: 60px;
+}
+
+.nav a {
+    display: block;
+    padding: 15px;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+}
+
+.nav a:hover,
+.nav a.active {
+    background: #e5e5e5;
+    padding-left: 23px;
+}
+
+.post-button {
+    margin-top: 35px;
+    width: 100%;
+    padding: 15px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.sidebar-bottom {
+    position: absolute;
+    bottom: 30px;
+    font-size: 11px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+
+/* MAIN CONTENT */
+
+main {
+    padding: 30px 35px;
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 20px;
+}
+
+.top h2 {
+    font-size: 25px;
+}
+
+.top span {
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* HEADLINE */
+
+.headline {
+    padding: 40px 0;
+}
+
+.headline small {
+    letter-spacing: 4px;
+}
+
+.headline h1 {
+    font-size: clamp(40px, 5vw, 65px);
+    line-height: 1.1;
+    margin-top: 18px;
+    letter-spacing: -3px;
+}
+
+.headline p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* CREATIVE QUOTE */
+
+.quote {
+    padding: 22px;
+    border: 1px solid black;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.quote span {
+    font-size: 45px;
+    font-family: Georgia, serif;
+}
+
+.quote p {
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: Georgia, serif;
+}
+
+.quote small {
+    display: block;
+    margin-top: 12px;
+    text-align: right;
+    letter-spacing: 2px;
+}
+
+/* CREATE POST */
+
+.create-post {
+    border: 1px solid #aaa;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.create-post textarea {
+    width: 100%;
+    height: 65px;
+    resize: vertical;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.create-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+.create-bottom span {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.create-bottom button {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* FEED */
+
+.feed-label {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+}
+
+.feed-label h3 {
+    font-size: 19px;
+}
+
+.feed-label span {
+    font-size: 11px;
+}
+
+.post {
+    padding: 22px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 43px;
+    height: 43px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.user-info h4 {
+    font-size: 14px;
+}
+
+.user-info small {
+    color: #777;
+    font-size: 11px;
+}
+
+.post-content {
+    margin: 20px 0;
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.post-actions button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.post-actions button:hover {
+    text-decoration: underline;
+}
+
+.post-actions .liked {
+    font-weight: bold;
+}
+
+.comment-area {
+    display: none;
+    margin-top: 15px;
+}
+
+.comment-area input {
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    background: transparent;
+}
+
+.comment-area button {
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.comments {
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 2;
+}
+
+/* RIGHT PANEL */
+
+.right-panel {
+    border-left: 1px solid #ccc;
+    padding: 30px 20px;
+}
+
+.search {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #aaa;
+    background: transparent;
+    outline: none;
+}
+
+.panel-section {
+    margin-top: 40px;
+}
+
+.panel-section h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.trending {
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.trending small {
+    color: #777;
+}
+
+.trending h4 {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.people {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.follow {
+    margin-left: auto;
+    border: 1px solid black;
+    padding: 7px 10px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.follow:hover {
+    background: black;
+    color: white;
+}
+
+footer {
+    font-size: 10px;
+    color: #777;
+    margin-top: 55px;
+    line-height: 2;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1000px) {
+    .container {
+        grid-template-columns: 170px 1fr;
+    }
+
+    .right-panel {
+        display: none;
+    }
+}
+
+@media(max-width: 650px) {
+    .container {
+        display: block;
+    }
+
+    .sidebar {
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+        padding: 18px;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .nav {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .nav a {
+        padding: 9px;
+        font-size: 12px;
+    }
+
+    .post-button {
+        margin-top: 12px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    main {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        OFFLINE.
+        <span>YOUR SPACE. YOUR VOICE.</span>
+    </div>
+
+    <nav class="nav">
+        <a href="#" class="active">⌂ &nbsp; Home</a>
+        <a href="#explore">⌕ &nbsp; Explore</a>
+        <a href="#feed">▤ &nbsp; Feed</a>
+        <a href="#create">✎ &nbsp; Create</a>
+        <a href="#profile">♙ &nbsp; Profile</a>
+    </nav>
+
+    <button class="post-button"
+    onclick="document.getElementById('create').scrollIntoView()">
+        + Create Post
+    </button>
+
+    <div class="sidebar-bottom">
+        <p>LESS SCROLLING.</p>
+        <p>MORE LIVING.</p>
+        <p>© OFFLINE 2026</p>
+    </div>
+
+</aside>
+
+<!-- MAIN -->
+
+<main>
+
+    <header class="top">
+        <h2>The Daily Feed.</h2>
+        <span>ISSUE NO. 001</span>
+    </header>
+
+    <section class="headline">
+
+        <small>WELCOME TO YOUR COMMUNITY</small>
+
+        <h1>
+            A place to<br>
+            be yourself.
+        </h1>
+
+        <p>
+            Share your thoughts. Discover new perspectives.
+            Connect without the noise.
+        </p>
+
+    </section>
+
+    <!-- QUOTE -->
+
+    <div class="quote">
+        <span>“</span>
+        <p>
+            Not everything needs to be perfect.
+            Sometimes, being real is enough.
+        </p>
+        <small>— A THOUGHT TO REMEMBER</small>
+    </div>
+
+    <!-- CREATE POST -->
+
+    <section class="create-post" id="create">
+
+        <textarea id="postText"
+        placeholder="What's on your mind today?"></textarea>
+
+        <div class="create-bottom">
+            <span>✎ SHARE A THOUGHT</span>
+            <button onclick="createPost()">Publish →</button>
+        </div>
+
+    </section>
+
+    <!-- FEED -->
+
+    <section id="feed">
+
+        <div class="feed-label">
+            <h3>Community Notes</h3>
+            <span>LATEST POSTS ↓</span>
+        </div>
+
+        <div id="posts">
+
+            <article class="post">
+
+                <div class="post-header">
+                    <div class="avatar">A</div>
+
+                    <div class="user-info">
+                        <h4>Alex Morgan</h4>
+                        <small>@alexmorgan · 2 hours ago</small>
+                    </div>
+                </div>
+
+                <p class="post-content">
+                    Sometimes the best conversations happen
+                    when nobody is trying to impress anyone.
+                    Just honest thoughts, simple words and
+                    genuine connections.
+                </p>
+
+                <div class="post-actions">
+                    <button onclick="likePost(this)">♡ <span>24</span></button>
+                    <button onclick="toggleComment(this)">◯ Comment</button>
+                    <button onclick="sharePost()">↗ Share</button>
+                </div>
+
+                <div class="comment-area">
+                    <input type="text" placeholder="Write a comment...">
+                    <button onclick="addComment(this)">Send</button>
+                    <div class="comments"></div>
+                </div>
+
+            </article>
+
+            <article class="post">
+
+                <div class="post-header">
+                    <div class="avatar">S</div>
+
+                    <div class="user-info">
+                        <h4>Sarah Wilson</h4>
+                        <small>@sarahwrites · 5 hours ago</small>
+                    </div>
+                </div>
+
+                <p class="post-content">
+                    A reminder to slow down, take a deep breath
+                    and appreciate how far you've come.
+                    Life isn't a race.
+                </p>
+
+                <div class="post-actions">
+                    <button onclick="likePost(this)">♡ <span>56</span></button>
+                    <button onclick="toggleComment(this)">◯ Comment</button>
+                    <button onclick="sharePost()">↗ Share</button>
+                </div>
+
+                <div class="comment-area">
+                    <input type="text" placeholder="Write a comment...">
+                    <button onclick="addComment(this)">Send</button>
+                    <div class="comments"></div>
+                </div>
+
+            </article>
+
+            <article class="post">
+
+                <div class="post-header">
+                    <div class="avatar">J</div>
+
+                    <div class="user-info">
+                        <h4>Jordan Lee</h4>
+                        <small>@jordanlee · Yesterday</small>
+                    </div>
+                </div>
+
+                <p class="post-content">
+                    What's one small thing that made you
+                    happy today? Mine was having coffee
+                    while watching the rain.
+                </p>
+
+                <div class="post-actions">
+                    <button onclick="likePost(this)">♡ <span>18</span></button>
+                    <button onclick="toggleComment(this)">◯ Comment</button>
+                    <button onclick="sharePost()">↗ Share</button>
+                </div>
+
+                <div class="comment-area">
+                    <input type="text" placeholder="Write a comment...">
+                    <button onclick="addComment(this)">Send</button>
+                    <div class="comments"></div>
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <footer>
+        OFFLINE. — A DIFFERENT KIND OF SOCIAL SPACE.
+        <br>
+        MADE FOR PEOPLE, NOT ALGORITHMS.
+    </footer>
+
+</main>
+
+<!-- RIGHT PANEL -->
+
+<aside class="right-panel">
+
+    <input class="search" id="search"
+    type="text" placeholder="⌕ Search posts...">
+
+    <section class="panel-section" id="explore">
+
+        <h3>Trending Topics.</h3>
+
+        <div class="trending">
+            <small>01 / COMMUNITY</small>
+            <h4>#SimpleLiving</h4>
+            <small>1.2K conversations</small>
+        </div>
+
+        <div class="trending">
+            <small>02 / CREATIVITY</small>
+            <h4>#DailyInspiration</h4>
+            <small>890 conversations</small>
+        </div>
+
+        <div class="trending">
+            <small>03 / LIFESTYLE</small>
+            <h4>#LittleMoments</h4>
+            <small>650 conversations</small>
+        </div>
+
+    </section>
+
+    <section class="panel-section" id="profile">
+
+        <h3>People to discover.</h3>
+
+        <div class="people">
+            <div class="avatar">M</div>
+            <div>
+                <h4>Mia Clark</h4>
+                <small>Artist</small>
+            </div>
+            <button class="follow" onclick="followUser(this)">Follow</button>
+        </div>
+
+        <div class="people">
+            <div class="avatar">D</div>
+            <div>
+                <h4>David Park</h4>
+                <small>Writer</small>
+            </div>
+            <button class="follow" onclick="followUser(this)">Follow</button>
+        </div>
+
+        <div class="people">
+            <div class="avatar">L</div>
+            <div>
+                <h4>Lily Rose</h4>
+                <small>Creator</small>
+            </div>
+            <button class="follow" onclick="followUser(this)">Follow</button>
+        </div>
+
+    </section>
+
+</aside>
+
+</div>
+
+<script>
+
+// CREATE POST
+
+function createPost() {
+
+    const input = document.getElementById("postText");
+    const text = input.value.trim();
+
+    if (text === "") {
+        alert("Please write something first!");
+        return;
+    }
+
+    const post = document.createElement("article");
+    post.className = "post";
+
+    post.innerHTML = `
+        <div class="post-header">
+            <div class="avatar">Y</div>
+            <div class="user-info">
+                <h4>You</h4>
+                <small>@yourprofile · Just now</small>
+            </div>
+        </div>
+
+        <p class="post-content"></p>
+
+        <div class="post-actions">
+            <button onclick="likePost(this)">♡ <span>0</span></button>
+            <button onclick="toggleComment(this)">◯ Comment</button>
+            <button onclick="sharePost()">↗ Share</button>
+        </div>
+
+        <div class="comment-area">
+            <input type="text" placeholder="Write a comment...">
+            <button onclick="addComment(this)">Send</button>
+            <div class="comments"></div>
+        </div>
+    `;
+
+    post.querySelector(".post-content").textContent = text;
+
+    document.getElementById("posts").prepend(post);
+
+    input.value = "";
+
+}
+
+// LIKE AND UNLIKE
+
+function likePost(button) {
+
+    let count = button.querySelector("span");
+    let number = Number(count.innerText);
+
+    if (button.classList.contains("liked")) {
+        number--;
+        button.classList.remove("liked");
+        button.firstChild.textContent = "♡ ";
+    } else {
+        number++;
+        button.classList.add("liked");
+        button.firstChild.textContent = "♥ ";
+    }
+
+    count.innerText = number;
+
+}
+
+// SHOW COMMENTS
+
+function toggleComment(button) {
+
+    const area = button.closest(".post")
+    .querySelector(".comment-area");
+
+    area.style.display =
+        area.style.display === "block" ? "none" : "block";
+
+}
+
+// ADD COMMENT
+
+function addComment(button) {
+
+    const area = button.closest(".comment-area");
+    const input = area.querySelector("input");
+    const comments = area.querySelector(".comments");
+
+    if (input.value.trim() === "") {
+        alert("Write a comment first!");
+        return;
+    }
+
+    const comment = document.createElement("p");
+    comment.textContent = "You: " + input.value.trim();
+
+    comments.appendChild(comment);
+
+    input.value = "";
+
+}
+
+// SHARE
+
+function sharePost() {
+
+    if (navigator.share) {
+        navigator.share({
+            title: "OFFLINE. Social Space",
+            text: "Check out this social space!"
+        });
+    } else {
+        alert("Thanks for sharing!");
+    }
+
+}
+
+// FOLLOW
+
+function followUser(button) {
+
+    if (button.innerText === "Follow") {
+        button.innerText = "Following";
+        button.style.background = "black";
+        button.style.color = "white";
+    } else {
+        button.innerText = "Follow";
+        button.style.background = "transparent";
+        button.style.color = "black";
+    }
+
+}
+
+// SEARCH
+
+document.getElementById("search").addEventListener("input", function() {
+
+    let value = this.value.toLowerCase();
+
+    document.querySelectorAll(".post").forEach(function(post) {
+
+        let text = post.innerText.toLowerCase();
+
+        post.style.display =
+            text.includes(value) ? "block" : "none";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
