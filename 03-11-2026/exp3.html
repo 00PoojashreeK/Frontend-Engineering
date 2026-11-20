@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Connect | Space Explorers Club</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            color: black;
+            padding: 25px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid black;
+        }
+
+        header h2 {
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 65px 15px 40px;
+        }
+
+        .hero .tag {
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 6vw, 65px);
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            line-height: 1.8;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* Main Form */
+        main {
+            max-width: 950px;
+            margin: 20px auto 50px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 12px;
+            padding: 35px;
+        }
+
+        .form-heading {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-heading h2 {
+            margin-bottom: 10px;
+        }
+
+        .form-heading p {
+            font-size: 14px;
+        }
+
+        /* Fieldsets */
+        fieldset {
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        legend {
+            font-size: 17px;
+            font-weight: bold;
+            padding: 0 12px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+        }
+
+        /* Input Fields */
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 6px;
+            color: black;
+            font-size: 14px;
+            outline: none;
+            font-family: Arial, sans-serif;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid black;
+            outline-offset: 2px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Radio Buttons and Checkboxes */
+        .choice-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 12px;
+        }
+
+        .choice {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .choice input {
+            width: auto;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 14px 35px;
+            border-radius: 6px;
+            border: 1px solid black;
+            background: white;
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: black;
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .about h2 {
+            margin-bottom: 12px;
+        }
+
+        .about p {
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid black;
+            font-size: 13px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 650px) {
+
+            body {
+                padding: 10px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            main {
+                padding: 20px 15px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            fieldset {
+                padding: 18px;
+            }
+
+            .choice-group {
+                gap: 13px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Website Header -->
+    <header>
+
+        <h2>🚀 COSMIC CONNECT</h2>
+
+        <!-- Navigation -->
+        <nav aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#join">Join Us</a>
+            <a href="#about">About</a>
+        </nav>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+
+        <p class="tag">EXPLORE • DISCOVER • CONNECT</p>
+
+        <h1>
+            Your Universe.<br>
+            Your Community.
+        </h1>
+
+        <p>
+            The universe is full of possibilities!
+            Join Cosmic Connect, meet curious minds,
+            share your interests and explore new ideas
+            with people who dream beyond the stars.
+        </p>
+
+    </section>
+
+    <!-- Main Form Content -->
+    <main id="join">
+
+        <section class="form-heading">
+
+            <h2>🌌 Get to Know You</h2>
+
+            <p>
+                Fill in the details below and become
+                a part of our universe.
+            </p>
+
+        </section>
+
+        <form id="cosmicForm">
+
+            <!-- 1. Personal Details -->
+            <fieldset>
+
+                <legend>👤 Personal Details</legend>
+
+                <section class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="fullname">Full Name *</label>
+
+                        <input type="text"
+                            id="fullname"
+                            name="fullname"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="dob">Date of Birth *</label>
+
+                        <input type="date"
+                            id="dob"
+                            name="dob"
+                            required>
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label>Gender *</label>
+
+                        <div class="choice-group">
+
+                            <label class="choice">
+                                <input type="radio"
+                                    name="gender"
+                                    value="Male"
+                                    required>
+                                Male
+                            </label>
+
+                            <label class="choice">
+                                <input type="radio"
+                                    name="gender"
+                                    value="Female">
+                                Female
+                            </label>
+
+                            <label class="choice">
+                                <input type="radio"
+                                    name="gender"
+                                    value="Other">
+                                Other
+                            </label>
+
+                            <label class="choice">
+                                <input type="radio"
+                                    name="gender"
+                                    value="Prefer not to say">
+                                Prefer not to say
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </fieldset>
+
+            <!-- 2. Contact Information -->
+            <fieldset>
+
+                <legend>📞 Contact Information</legend>
+
+                <section class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="email">Email Address *</label>
+
+                        <input type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@gmail.com"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="phone">Phone Number *</label>
+
+                        <input type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number"
+                            autocomplete="tel"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="city">City *</label>
+
+                        <input type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter your city"
+                            autocomplete="address-level2"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="country">Country</label>
+
+                        <input type="text"
+                            id="country"
+                            name="country"
+                            placeholder="Enter your country">
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="address">Full Address</label>
+
+                        <textarea id="address"
+                            name="address"
+                            placeholder="Enter your complete address"></textarea>
+
+                    </div>
+
+                </section>
+
+            </fieldset>
+
+            <!-- 3. Academic and Professional Details -->
+            <fieldset>
+
+                <legend>🎓 Academic / Professional Details</legend>
+
+                <section class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="institution">
+                            Institution / Organization
+                        </label>
+
+                        <input type="text"
+                            id="institution"
+                            name="institution"
+                            placeholder="Enter college or company name">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="designation">Designation</label>
+
+                        <input type="text"
+                            id="designation"
+                            name="designation"
+                            placeholder="Student / Developer / Designer">
+
+                    </div>
+
+                    <div class="form-group full-width">
+
+                        <label for="study">Area of Study</label>
+
+                        <select id="study" name="study">
+
+                            <option value="">Select your area</option>
+                            <option>Computer Science</option>
+                            <option>Engineering</option>
+                            <option>Space Science</option>
+                            <option>Physics</option>
+                            <option>Mathematics</option>
+                            <option>Arts and Design</option>
+                            <option>Business</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+                </section>
+
+            </fieldset>
+
+            <!-- 4. Interests and Skills -->
+            <fieldset>
+
+                <legend>✨ Your Interests & Skills</legend>
+
+                <label>
+                    Select the topics you are interested in:
+                </label>
+
+                <div class="choice-group">
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Technology">
+                        Technology
+                    </label>
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Space Science">
+                        Space Science
+                    </label>
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Artificial Intelligence">
+                        Artificial Intelligence
+                    </label>
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Robotics">
+                        Robotics
+                    </label>
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Music">
+                        Music
+                    </label>
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Sports">
+                        Sports
+                    </label>
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Photography">
+                        Photography
+                    </label>
+
+                    <label class="choice">
+                        <input type="checkbox"
+                            name="interests"
+                            value="Travel">
+                        Travel
+                    </label>
+
+                </div>
+
+                <div class="form-group" style="margin-top: 25px;">
+
+                    <label for="skills">Your Skills</label>
+
+                    <textarea id="skills"
+                        name="skills"
+                        placeholder="Example: Python, HTML, Designing, Communication..."></textarea>
+
+                </div>
+
+            </fieldset>
+
+            <!-- 5. Purpose of Contact -->
+            <fieldset>
+
+                <legend>🤝 Purpose of Contact</legend>
+
+                <label>
+                    Why would you like to connect with us?
+                </label>
+
+                <div class="choice-group">
+
+                    <label class="choice">
+                        <input type="radio"
+                            name="purpose"
+                            value="Collaboration"
+                            required>
+                        Collaboration
+                    </label>
+
+                    <label class="choice">
+                        <input type="radio"
+                            name="purpose"
+                            value="Project Discussion">
+                        Project Discussion
+                    </label>
+
+                    <label class="choice">
+                        <input type="radio"
+                            name="purpose"
+                            value="Networking">
+                        Networking
+                    </label>
+
+                    <label class="choice">
+                        <input type="radio"
+                            name="purpose"
+                            value="General Enquiry">
+                        General Enquiry
+                    </label>
+
+                </div>
+
+            </fieldset>
+
+            <!-- 6. Additional Information -->
+            <fieldset>
+
+                <legend>💬 Tell Us More</legend>
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Introduce Yourself / Additional Message
+                    </label>
+
+                    <textarea id="message"
+                        name="message"
+                        placeholder="Tell us something interesting about yourself, your dreams or your ideas..."></textarea>
+
+                </div>
+
+            </fieldset>
+
+            <!-- Submit and Reset Buttons -->
+            <section class="button-group">
+
+                <button type="submit" class="submit-btn">
+                    🚀 Submit Registration
+                </button>
+
+                <button type="reset" class="reset-btn">
+                    Reset Form
+                </button>
+
+            </section>
+
+        </form>
+
+    </main>
+
+    <!-- About Section -->
+    <aside id="about" class="about">
+
+        <h2>Beyond the Stars, Together.</h2>
+
+        <p>
+            Cosmic Connect is a community concept for curious minds,
+            creative thinkers and future explorers.
+        </p>
+
+    </aside>
+
+    <!-- Footer -->
+    <footer>
+
+        <p>© 2026 COSMIC CONNECT | Made for Curious Minds 🚀</p>
+
+        <p>Keep Exploring. Keep Dreaming.</p>
+
+    </footer>
+
+    <!-- JavaScript Form Submission -->
+    <script>
+
+        const form = document.getElementById("cosmicForm");
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("fullname").value;
+
+            alert("Welcome to Cosmic Connect, " + name +
+                "! Your form has been submitted successfully.");
+
+            form.reset();
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<head>
+    <title>NovaSpace</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: black;
+            background: white;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            border: 1px solid black;
+            margin: 20px auto 0;
+            width: 90%;
+            max-width: 1100px;
+            padding: 15px 20px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 15px auto;
+            line-height: 1.6;
+        }
+
+        .hero button {
+            background: white;
+            border: 1px solid black;
+            padding: 12px 25px;
+            cursor: pointer;
+        }
+
+
+        /* SERVICES */
+
+        .section {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .service-card {
+            border: 1px solid black;
+            padding: 25px;
+            min-height: 180px;
+        }
+
+        .service-card h3 {
+            margin-top: 0;
+        }
+
+        .service-card p {
+            line-height: 1.5;
+        }
+
+        .number {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid black;
+        }
+
+        .feature-text {
+            padding: 30px;
+            border-right: 1px solid black;
+        }
+
+        .feature-text p {
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            padding: 30px;
+        }
+
+        .feature-list p {
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+        }
+
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid black;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 25px;
+            border-right: 1px solid black;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h2 {
+            font-size: 30px;
+            margin: 5px;
+        }
+
+
+        /* ABOUT */
+
+        .about {
+            border: 1px solid black;
+            padding: 30px;
+            line-height: 1.7;
+        }
+
+
+        /* CONTACT */
+
+        .contact {
+            border: 1px solid black;
+            padding: 30px;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid black;
+            font-family: Arial, sans-serif;
+        }
+
+        .contact textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .contact button {
+            padding: 10px 25px;
+            background: white;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto 20px;
+            border-top: 1px solid black;
+            padding: 20px;
+            text-align: center;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-text {
+                border-right: none;
+                border-bottom: 1px solid black;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid black;
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <header>
+
+        <div class="logo">
+            NOVASPACE
+        </div>
+
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#services">SERVICES</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="home">
+
+        <p>WELCOME TO NOVASPACE</p>
+
+        <h1>
+            BUILD. CREATE. INSPIRE.
+        </h1>
+
+        <p>
+            We create simple digital experiences that help people
+            turn ideas into meaningful projects.
+        </p>
+
+        <button onclick="exploreServices()">
+            EXPLORE SERVICES
+        </button>
+
+    </section>
+
+
+    <!-- SERVICES -->
+
+    <section class="section" id="services">
+
+        <div class="section-title">
+            <h2>OUR SERVICES</h2>
+            <p>Simple solutions for modern ideas.</p>
+        </div>
+
+
+        <div class="services">
+
+            <div class="service-card">
+
+                <div class="number">01</div>
+
+                <h3>WEB DESIGN</h3>
+
+                <p>
+                    Clean and simple websites designed
+                    for users and businesses.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="number">02</div>
+
+                <h3>UI / UX</h3>
+
+                <p>
+                    Easy-to-use interfaces focused on
+                    creating a better user experience.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="number">03</div>
+
+                <h3>IDEA BUILDING</h3>
+
+                <p>
+                    We help transform creative ideas
+                    into useful digital solutions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="section">
+
+        <div class="features">
+
+            <div class="feature-text">
+
+                <h2>WHY CHOOSE US?</h2>
+
+                <p>
+                    Our approach is simple. We believe that
+                    good design does not need to be complicated.
+                </p>
+
+                <p>
+                    We focus on clarity, usability and
+                    meaningful digital experiences.
+                </p>
+
+            </div>
+
+
+            <div class="feature-list">
+
+                <h3>WHAT WE OFFER</h3>
+
+                <p>✓ Simple Design</p>
+
+                <p>✓ Easy Navigation</p>
+
+                <p>✓ Responsive Layout</p>
+
+                <p>✓ User Friendly Experience</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="section">
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <h2>25+</h2>
+
+                <p>PROJECTS</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h2>15+</h2>
+
+                <p>CLIENTS</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h2>5</h2>
+
+                <p>YEARS EXPERIENCE</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="section" id="about">
+
+        <div class="about">
+
+            <h2>ABOUT US</h2>
+
+            <p>
+                NovaSpace is a small creative platform focused
+                on building useful and simple digital experiences.
+            </p>
+
+            <p>
+                Our goal is to make technology easy to understand,
+                easy to use and accessible to everyone.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="section" id="contact">
+
+        <div class="contact">
+
+            <h2>CONTACT US</h2>
+
+            <p>
+                Have an idea? Let us know.
+            </p>
+
+
+            <form onsubmit="sendMessage(event)">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Your Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Your Email"
+                    required
+                >
+
+                <textarea
+                    id="message"
+                    placeholder="Your Message"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    SEND MESSAGE
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 NovaSpace | Simple Ideas. Better Experiences.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function exploreServices() {
+
+            document.getElementById("services").scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function sendMessage(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+
+            alert(
+                "Thank you, " + name + "! Your message has been received."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
